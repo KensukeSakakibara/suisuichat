@@ -1,0 +1,15 @@
+body {
+    font-size:80%;
+}
+
+#text {
+    width: 500px;
+}
+
+#name {
+    width: 100px;
+}
+
+#chatui {
+    margin-top: 15px;
+}
