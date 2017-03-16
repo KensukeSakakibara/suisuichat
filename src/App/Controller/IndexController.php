@@ -13,6 +13,7 @@
  */
 namespace SuisuiChat\App\Controller;
 
+use \SuisuiChat\App\Model\MCategoriesModel;
 use \SuisuiChat\App\Model\TUsersModel;
 
 class IndexController extends AbstractController
@@ -32,6 +33,7 @@ class IndexController extends AbstractController
      */
     public function indexAction()
     {
+        /*
         $tUsersModel = new TUsersModel($this->_container);
         $users = $tUsersModel->getDataByEmail();
 
@@ -53,7 +55,13 @@ class IndexController extends AbstractController
         }
         
         $this->_viewData = array('users' => $users);
+        */
         
+        // カテゴリをアサイン
+        $mCategoriesModel = new MCategoriesModel($this->_container);
+        $categories = $mCategoriesModel->getAllCategories();
+        $this->_viewData = array('categories' => $categories);
+
         // 画面画面表示
         $this->_render('app/index/index.twig');
     }
