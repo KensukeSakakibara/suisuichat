@@ -1,4 +1,8 @@
 /vendor/
-/node_modules/
+/logs/*
+/public/vendor/*
+/twig/caches/*
 !.gitkeep
-database.config.php
+/src/database.php
+/node_modules/
+

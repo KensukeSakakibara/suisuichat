@@ -1,5 +1,5 @@
 <?php
-namespace Twixt;
+namespace SuisuiChat;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 

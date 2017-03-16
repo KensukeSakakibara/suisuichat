@@ -1,0 +1,26 @@
+{
+  "name": "webamp3",
+  "version": "1.0.0",
+  "description": "This application uses the latest Slim 3 with the Twig template renderer.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp-phpunit": "^0.21.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KensukeSakakibara/webamp3.git"
+  },
+  "author": "Kensuke Sakakibara",
+  "license": "MIT"
+}

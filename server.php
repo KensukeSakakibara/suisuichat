@@ -1,11 +1,11 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
-require __DIR__.'/src/Chat.php';
+require __DIR__.'/src/Server/Chat.php';
 
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use Twixt\Chat;
+use SuisuiChat\Chat;
 
 $server = IoServer::factory(
     new HttpServer(
