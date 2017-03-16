@@ -18,16 +18,20 @@ class Chat implements MessageComponentInterface
         echo "New connection! ({$conn->resourceId})\n";
     }
 
-    public function onMessage(ConnectionInterface $from, $msg) {
+    public function onMessage(ConnectionInterface $from, $msg)
+    {
+        $jsonData = (array)json_decode($msg);
+        
+        // 現在時刻を追加する
+        $now = date('Y/m/d H:i:s');
+        $jsonData['time'] = $now;
+        
         $numRecv = count($this->clients) - 1;
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
-
+        
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                // The sender is not the receiver, send to each client connected
-                $client->send($msg);
-            }
+            $client->send(json_encode($jsonData));
         }
     }
 

@@ -1,22 +1,35 @@
 $(function(){
     var conn = new WebSocket('ws://' + location.hostname + ':4502');
     conn.onopen = function(e) {
-        appendMessage("Connection established!");
+        //appendMessage("", "Connection established!", "");
     };
     conn.onmessage = function(e) {
-        appendMessage(e.data);
+        var jsonObj = JSON.parse(e.data);
+        appendMessage(jsonObj.name, jsonObj.message, jsonObj.time);
     };
     
-    function appendMessage(msg) {
-        $("#messages").append(msg + "<br>\n");
+    function appendMessage(name, message, time) {
+        // HTMLエスケープして改行を<br>に変換
+        var escapeMessage = Handlebars.Utils.escapeExpression(message);
+        escapeMessage = escapeMessage.replace(/(\r\n|\n|\r)/gm, '<br>');
         
-        var synthes = new SpeechSynthesisUtterance(msg);
+        // JSテンプレート処理
+        var values = {"name":name,"message":escapeMessage,"time":time}
+        var source = $("#message_box_template").html();
+        var template = Handlebars.compile(source);
+        var appendHtml = template(values);
+        
+        // メッセージを追加
+        $("#messages").append(appendHtml);
+        
+        // 読み上げ
+        var synthes = new SpeechSynthesisUtterance(message);
         synthes.lang = "ja-JP"
         synthes.volume = 1;
         speechSynthesis.speak(synthes);
     }
     
-    $("#send_btn").on('click', function(){
+    $("#send_btn").on('click', function() {
         sendMsg();
     });
     
@@ -32,10 +45,9 @@ $(function(){
     function sendMsg() {
         var name = $("#name").val();
         var message = $("#message").val();
-        var msg = name + ' : ' + message;
-        if (msg) {
-            conn.send(msg);
-            appendMessage(msg);
+        if (name && message) {
+            var jsonStr = JSON.stringify({"name":name,"message":message});
+            conn.send(jsonStr);
         }
         $("#message").val("");
         $("#message").focus();

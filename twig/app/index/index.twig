@@ -6,7 +6,20 @@
 </header>
 <section id="content">
     <section id="chat">
-        <div id="messages"></div>
+        <div id="messages">
+            {# JSテンプレート #}
+            <script id="message_box_template" type="text/x-handlebars-template">
+                {% raw %}
+                    <div class="message_box">
+                        <div class="message_title clearfix">
+                            <div class="name">{{name}}</div>
+                            <div class="time">{{time}}</div>
+                        </div>
+                        <div class="message">{{{message}}}</div>
+                    </div>
+                {% endraw %}
+            </script>
+        </div>
         <div id="chatui">
             <div>
                 <span class="title">Name</span><br>

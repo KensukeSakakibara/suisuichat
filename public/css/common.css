@@ -41,7 +41,7 @@ header {
 }
 
 footer {
-    padding-top: 30px;
+    padding: 30px;
     background-color: #f9f8f4;
     border-top: 1px solid #f7f4ef;
     flex: 1;
@@ -65,7 +65,7 @@ h2 {
 #chat {
     margin: 0 auto;
     margin-top: 40px;
-    width: 700px;
+    width: 800px;
 }
 
 #messages {
@@ -75,6 +75,22 @@ h2 {
     padding: 10px;
     text-align: left;
     overflow: auto;
+}
+.message_box {
+    margin-top: 10px;
+}
+.message_box div.message_title div {
+    float: left;
+}
+.message_box div.message_title div.name {
+    font-weight: bold;
+    color: #719e40;
+    width: 390px;
+}
+.message_box div.message_title div.time {
+    text-align: right;
+    font-size: 80%;
+    width: 370px;
 }
 
 #chatui {
