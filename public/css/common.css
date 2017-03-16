@@ -1,18 +1,110 @@
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
 body {
-    margin: 50px 0 0 0;
+    margin: 0;
     padding: 0;
     width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: center;
     color: #aaa;
-    font-size: 18px;
+    font-size: 14px;
+}
+
+header {
+    background-color: #f9f8f4;
+    border-bottom: 1px solid #f7f4ef;
+}
+
+#content {
+    margin: 0 auto;
+    padding-bottom: 20px;
+    width: 1000px;
+}
+
+footer {
+    padding-top: 30px;
+    background-color: #f9f8f4;
+    border-top: 1px solid #f7f4ef;
+    flex: 1;
 }
 
 h1 {
     color: #719e40;
     letter-spacing: -3px;
     font-family: 'Lato', sans-serif;
-    font-size: 100px;
+    font-size: 80px;
     font-weight: 200;
-    margin-bottom: 0;
+    margin: 0;
+}
+
+h2 {
+    color: #719e40;
+    font-family: 'Lato', sans-serif;
+    margin: 10px;
+}
+
+#chat {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 700px;
+}
+
+#messages {
+    color: #555;
+    border: 1px solid #AAA;
+    height: 300px;
+    padding: 10px;
+    text-align: left;
+    overflow: auto;
+}
+
+#chatui {
+    text-align: left;
+}
+#chatui div {
+    margin-top: 10px;
+}
+#message {
+    width: 100%;
+    height: 80px;
+}
+#chatui .buttons {
+    text-align: right;
+}
+
+#categories {
+    margin-top: 40px;
+}
+
+.category {
+    float: left;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+    background-color: #EEE;
+    margin: 7px;
+    padding: 6px;
+}
+
+.category_sub {
+    display: none;
 }

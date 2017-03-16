@@ -1,34 +1,43 @@
 {% extends "app/layout.twig" %}
 
 {% block content %}
+<header>
     <h1>SuisuiChat</h1>
-    
-    {% if users is not null %}
-        <h2>Hello {{users.email}}!</h2>
-    {% else %}
-        <p>Try <a href="http://www.slimframework.com">SlimFramework</a>
-    {% endif %}
-    
-    <div id="messages"></div>
-    <div id="chatui">
-        <span class="title">Name:</span><input type="text" id="name">&nbsp;
-        <span class="title">Message:</span><input type="text" id="text">
-        <input type="button" id="send_btn" value="Send">
-    </div>
-    
-    <div id="submenu">
+</header>
+<section id="content">
+    <section id="chat">
+        <div id="messages"></div>
+        <div id="chatui">
+            <div>
+                <span class="title">Name</span><br>
+                <input type="text" id="name">
+            </div>
+            <div>
+                <span class="title">Message:</span><br>
+                <textarea id="message"></textarea>
+            </div>
+            <div class="buttons">
+                <input type="button" id="send_btn" value="Send">
+            </div>
+        </div>
+    </section>
+    <section id="categories">
         <h2>Categories</h2>
-        <ul>
+        <div class="clearfix">
             {% for category in categories %}
-                <li>
+                <div class="category">
                     <p>{{category.name}}</p>
-                    <ul>
+                    <ul class="category_sub">
                         {% for category_sub in category.categories_sub %}
                             <li>{{category_sub.name}}</li>
                         {% endfor %}
                     </ul>
-                </li>
+                </div>
             {% endfor %}
-        </ul>
-    </div>
+        </div>
+    </section>
+</section>
+<footer>
+    SuisuiChat @ 2017 Suisui. All Rights Reserved.
+</footer>
 {% endblock %}

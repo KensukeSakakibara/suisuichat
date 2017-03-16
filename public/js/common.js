@@ -20,25 +20,28 @@ $(function(){
         sendMsg();
     });
     
-    $("#text").keypress(function (e) {
+    $("#message").keypress(function (e) {
         if (e.which == 13) {
-            sendMsg();
+            if(event.ctrlKey || event.shiftKey){
+                sendMsg();
+                return false;
+            }
         }
     });
     
     function sendMsg() {
         var name = $("#name").val();
-        var text = $("#text").val();
-        var msg = name + ' : ' + text;
+        var message = $("#message").val();
+        var msg = name + ' : ' + message;
         if (msg) {
             conn.send(msg);
             appendMessage(msg);
-            $("#text").val("");
         }
-        $("#text").focus();
+        $("#message").val("");
+        $("#message").focus();
         
-        $('body').delay(100).animate({
-            scrollTop: $(document).height()
+        $('#messages').delay(100).animate({
+            scrollTop: $('#messages').height()
         },1500);
     }
 });
