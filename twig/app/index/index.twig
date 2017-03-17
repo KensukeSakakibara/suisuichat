@@ -13,7 +13,7 @@
                         <div class="name">{{message.name}}</div>
                         <div class="time">{{message.time}}</div>
                     </div>
-                    <div class="message">{{message.message|nl2br}}</div>
+                    <div class="message_txt">{{message.message|nl2br}}</div>
                 </div>
             {% endfor %}
             {# JSテンプレート #}
@@ -24,7 +24,7 @@
                             <div class="name">{{name}}</div>
                             <div class="time">{{time}}</div>
                         </div>
-                        <div class="message">{{{message}}}</div>
+                        <div class="message_txt">{{{message}}}</div>
                     </div>
                 {% endraw %}
             </script>

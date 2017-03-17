@@ -21,10 +21,16 @@
     float: left;
     font-weight: bold;
     color: #719e40;
+    font-size: 16px;
 }
 .message_box div.message_title div.time {
     text-align: right;
-    font-size: 80%;
+}
+.message_box div.message_txt {
+    margin-top: 5px;
+    font-family: IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;
+    font-size  : 16px;
+    line-height: 18px;
 }
 
 #chatui {
