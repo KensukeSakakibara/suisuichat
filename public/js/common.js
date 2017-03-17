@@ -37,8 +37,8 @@ $(function(){
     });
     
     $("#message").keypress(function (e) {
-        if (e.which == 13) {
-            if(event.ctrlKey || event.shiftKey){
+        if (event.ctrlKey || event.shiftKey) {
+            if (e.keyCode == 10 || e.keyCode == 13) {
                 sendMsg();
                 return false;
             }
