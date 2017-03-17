@@ -23,13 +23,30 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+$appType = getAppType($container);
+
 // Service factory for the ORM
-foreach ($container['settings']['db'] as $key => $dbSetting) {
+foreach ($container['settings']['db'][$appType] as $key => $dbSetting) {
     $container['db_'. $key] = function ($container) use ($key) {
+        $appType = getAppType($container);
         $capsule = new \Illuminate\Database\Capsule\Manager;
-        $capsule->addConnection($container['settings']['db'][$key]);
+        $capsule->addConnection($container['settings']['db'][$appType][$key]);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
         return $capsule;
     };
+}
+
+// $appTypeを取得
+function getAppType($container) {
+    $appType = 'local';
+    $domainArray = $container['settings']['application']['domain'];
+    if ($domainArray['live'] == $_SERVER['HTTP_HOST']) {
+        $appType = 'live';
+    } elseif ($domainArray['staging'] == $_SERVER['HTTP_HOST']) {
+        $appType = 'staging';
+    } elseif ($domainArray['develop'] == $_SERVER['HTTP_HOST']) {
+        $appType = 'develop';
+    }
+    return $appType;
 }

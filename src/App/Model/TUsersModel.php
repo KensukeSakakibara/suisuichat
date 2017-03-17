@@ -35,11 +35,11 @@ class TUsersModel extends AbstractModel
     public function addUser()
     {
         $userData = array(
-            'status'                => 0,
-            'email'                 => 'example4@sakakick.com',
-            'password'              => '********',
-            'first_name'            => 'test',
-            'last_name'             => 'taro',
+            'status'     => 0,
+            'email'      => 'example4@sakakick.com',
+            'password'   => '********',
+            'first_name' => 'test',
+            'last_name'  => 'taro',
         );
         
         return $this->_table->insert($userData);
@@ -51,11 +51,11 @@ class TUsersModel extends AbstractModel
     public function updateUser()
     {
         $userData = array(
-            'status'                => 3,
-            'email'                 => 'example333@sakakick.com',
-            'password'              => '********33',
-            'first_name'            => 'test3',
-            'last_name'             => 'taro3',
+            'status'     => 3,
+            'email'      => 'example333@sakakick.com',
+            'password'   => '********33',
+            'first_name' => 'test3',
+            'last_name'  => 'taro3',
         );
         
         return $this->_table->getMaster()->update(5, $userData);

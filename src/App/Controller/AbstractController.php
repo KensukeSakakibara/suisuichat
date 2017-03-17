@@ -35,6 +35,30 @@ abstract class AbstractController
         $this->_params    = $container->request->getParams();
         $this->_twig      = $container->get('view');
         $this->_viewData  = array();
+        
+        // port番号を取得する
+        $appType = $this->_getAppType();
+        $port = $this->_container['settings']['application']['server'][$appType]['port'];
+        $this->_viewData['port'] = $port;
+    }
+    
+    /**
+     * アプリのタイプを取得する
+     * 
+     * @return string live,staging,develop,localの4種類
+     */
+    protected function _getAppType()
+    {
+        $appType = 'local';
+        $domainArray = $this->_container['settings']['application']['domain'];
+        if ($domainArray['live'] == $_SERVER['HTTP_HOST']) {
+            $appType = 'live';
+        } elseif ($domainArray['staging'] == $_SERVER['HTTP_HOST']) {
+            $appType = 'staging';
+        } elseif ($domainArray['develop'] == $_SERVER['HTTP_HOST']) {
+            $appType = 'develop';
+        }
+        return $appType;
     }
     
     /**
@@ -42,7 +66,7 @@ abstract class AbstractController
      * 
      * @return object DBハンドラ
      */
-    protected function getDbAdapter()
+    protected function _getDbAdapter()
     {
         $dbh = $this->_container->get('db_master')->connection();
         return $dbh;

@@ -1,5 +1,6 @@
 $(function(){
-    var conn = new WebSocket('ws://' + location.hostname + ':4502');
+    var port = $("#port").val();
+    var conn = new WebSocket('ws://' + location.hostname + ':' + port);
     conn.onopen = function(e) {
         //appendMessage("", "Connection established!", "");
     };
@@ -8,7 +9,7 @@ $(function(){
         appendMessage(jsonObj.name, jsonObj.message, jsonObj.time);
     };
     
-    scrollMessages(0);
+    scrollMessages();
     
     function appendMessage(name, message, time) {
         // HTMLエスケープして改行を<br>に変換
@@ -54,12 +55,10 @@ $(function(){
         $("#message").val("");
         $("#message").focus();
         
-        scrollMessages(1500);
+        scrollMessages();
     }
     
-    function scrollMessages(delay) {
-        $('#messages').delay(100).animate({
-            scrollTop: $(document).height()
-        },delay);
+    function scrollMessages() {
+        $('#messages').animate({scrollTop: $('#messages')[0].scrollHeight}, 'fast');
     }
 });

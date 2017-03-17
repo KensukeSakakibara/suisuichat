@@ -37,11 +37,16 @@ $dbSettings = require_once __DIR__ . '/src/database.php';
 $settings = array('settings' => array_merge($appSettings, $dbSettings));
 $container = new \Slim\Container($settings);
 
+// port番号を取得する
+$appType = getAppType($container);
+$port = $container['settings']['application']['server'][$appType]['port'];
+
 // Service factory for the ORM
-foreach ($container['settings']['db'] as $key => $dbSetting) {
+foreach ($container['settings']['db'][$appType] as $key => $dbSetting) {
     $container['db_'. $key] = function ($container) use ($key) {
+        $appType = getAppType($container);
         $capsule = new \Illuminate\Database\Capsule\Manager;
-        $capsule->addConnection($container['settings']['db'][$key]);
+        $capsule->addConnection($container['settings']['db'][$appType][$key]);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
         return $capsule;
@@ -54,7 +59,20 @@ $server = IoServer::factory(
             new Chat($container)
         )
     ),
-    4502
+    $port
 );
 
 $server->run();
+
+function getAppType($container) {
+    $appType = 'local';
+    $pathArray = $container['settings']['application']['path'];
+    if (rtrim($pathArray['live'], "/") == __DIR__) {
+        $appType = 'live';
+    } elseif (rtrim($pathArray['staging'], "/") == __DIR__) {
+        $appType = 'staging';
+    } elseif (rtrim($pathArray['develop'], "/") == __DIR__) {
+        $appType = 'develop';
+    }
+    return $appType;
+}
