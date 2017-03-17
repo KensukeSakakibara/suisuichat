@@ -8,6 +8,8 @@ $(function(){
         appendMessage(jsonObj.name, jsonObj.message, jsonObj.time);
     };
     
+    scrollMessages(0);
+    
     function appendMessage(name, message, time) {
         // HTMLエスケープして改行を<br>に変換
         var escapeMessage = Handlebars.Utils.escapeExpression(message);
@@ -52,8 +54,12 @@ $(function(){
         $("#message").val("");
         $("#message").focus();
         
+        scrollMessages(1500);
+    }
+    
+    function scrollMessages(delay) {
         $('#messages').delay(100).animate({
-            scrollTop: $('#messages').height()
-        },1500);
+            scrollTop: $(document).height()
+        },delay);
     }
 });

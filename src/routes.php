@@ -4,18 +4,22 @@
 $it = new RecursiveDirectoryIterator(__DIR__ . '/Api');
 $it = new RecursiveIteratorIterator($it);
 $it = new RegexIterator($it, '/\.php\z/');
+require_once __DIR__ . '/Api/Model/AbstractModel.php';
+require_once __DIR__ . '/Api/Table/AbstractTable.php';
 foreach ($it as $file) {
     if ($file->isFile()) {
-        require $file;
+        require_once $file;
     }
 }
 
 $it = new RecursiveDirectoryIterator(__DIR__ . '/App');
 $it = new RecursiveIteratorIterator($it);
 $it = new RegexIterator($it, '/\.php\z/');
+require_once __DIR__ . '/App/Model/AbstractModel.php';
+require_once __DIR__ . '/App/Table/AbstractTable.php';
 foreach ($it as $file) {
     if ($file->isFile()) {
-        require $file;
+        require_once $file;
     }
 }
 

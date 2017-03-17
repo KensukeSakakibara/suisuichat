@@ -15,6 +15,7 @@ namespace SuisuiChat\App\Controller;
 
 use \SuisuiChat\App\Model\MCategoriesModel;
 use \SuisuiChat\App\Model\TUsersModel;
+use \SuisuiChat\App\Model\TMessagesModel;
 
 class IndexController extends AbstractController
 {
@@ -57,10 +58,17 @@ class IndexController extends AbstractController
         $this->_viewData = array('users' => $users);
         */
         
+        // メッセージを取得
+        $limit = 100;
+        $offset = 0;
+        $tMessagesModel = new TMessagesModel($this->_container);
+        $messages = $tMessagesModel->getDataLimitOffset($limit, $offset);
+        $this->_viewData['messages'] = $messages;
+
         // カテゴリをアサイン
         $mCategoriesModel = new MCategoriesModel($this->_container);
         $categories = $mCategoriesModel->getAllCategories();
-        $this->_viewData = array('categories' => $categories);
+        $this->_viewData['categories'] = $categories;
 
         // 画面画面表示
         $this->_render('app/index/index.twig');

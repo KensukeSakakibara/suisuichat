@@ -1,0 +1,62 @@
+#chat {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 800px;
+}
+
+#messages {
+    color: #555;
+    border: 1px solid #AAA;
+    height: 300px;
+    padding: 10px;
+    text-align: left;
+    overflow: auto;
+}
+.message_box {
+    margin-top: 10px;
+}
+.message_box div.message_title div {
+    float: left;
+}
+.message_box div.message_title div.name {
+    font-weight: bold;
+    color: #719e40;
+    width: 390px;
+}
+.message_box div.message_title div.time {
+    text-align: right;
+    font-size: 80%;
+    width: 370px;
+}
+
+#chatui {
+    text-align: left;
+}
+#chatui div {
+    margin-top: 10px;
+}
+#message {
+    width: 100%;
+    height: 80px;
+}
+#chatui .buttons {
+    text-align: right;
+}
+
+#categories {
+    margin-top: 40px;
+}
+
+.category {
+    float: left;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+    background-color: #EEE;
+    margin: 7px;
+    padding: 6px;
+}
+
+.category_sub {
+    display: none;
+}

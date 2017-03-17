@@ -7,6 +7,15 @@
 <section id="content">
     <section id="chat">
         <div id="messages">
+            {% for message in messages %}
+                <div class="message_box">
+                    <div class="message_title clearfix">
+                        <div class="name">{{message.name}}</div>
+                        <div class="time">{{message.time}}</div>
+                    </div>
+                    <div class="message">{{message.message|nl2br}}</div>
+                </div>
+            {% endfor %}
             {# JSテンプレート #}
             <script id="message_box_template" type="text/x-handlebars-template">
                 {% raw %}
